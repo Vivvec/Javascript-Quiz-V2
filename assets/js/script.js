@@ -49,3 +49,47 @@ let quiz = [
         answer: "Console.log"
     },
 ];
+// start 
+function startGame () {
+
+    document.getElementById("intro").style.display = "none"
+    document.getElementById("questions").style.display = "block"
+    time = 75;
+    question_number = 0;
+    load_question(question_number)
+
+// For loop
+
+for (var i = 0; i < elements.length; i++) {
+
+    elements[i].addEventListener("click", answer_question);
+}
+
+}
+
+// load Q 
+function load_question(question_number) {
+document.getElementById("question-text").innerHTML = quiz[question_number]["question"]
+document.getElementById("option-01").innerHTML = quiz[question_number]["options"][0]
+document.getElementById("option-02").innerHTML = quiz[question_number]["options"][1]
+document.getElementById("option-03").innerHTML = quiz[question_number]["options"][2]
+document.getElementById("option-04").innerHTML = quiz[question_number]["options"][3]
+}
+
+// timer
+
+document.getElementById("start").addEventListener("click", function(){
+    timer = setInterval(function function1(){
+    
+    document.getElementById("time").innerHTML = time + 
+    "&nbsp"+"seconds remaining";
+    time -=1;
+    if(time <= 0){
+        clearInterval(time);
+        document.getElementById("time").innerHTML = "Game Over"
+        document.getElementById("questions").style.display = "none"
+    };
+    }, 1000);
+
+});
+  
