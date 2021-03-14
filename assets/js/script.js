@@ -93,3 +93,120 @@ document.getElementById("start").addEventListener("click", function(){
 
 });
   
+
+// answers
+
+function answer_question (event) {
+
+	answered = event.target.innerHTML
+    
+    if(answered == quiz[question_number]["answer"]) {
+       
+        time += 1 
+
+	} else {
+
+        time -= 10
+    }
+    question_number += 1
+    if(question_number <= 4 ) { 
+        load_question(question_number)
+       } else {
+
+    // load input initials page 
+        document.getElementById("questions").style.display = "none"
+   
+        document.getElementById("time").style.display = "none"
+   
+        document.getElementById("log").style.display = "block"
+   
+        document.getElementById("highScore").innerHTML = time
+       }     
+       
+}
+function saveGame() {
+
+    // scores
+
+    document.getElementById("log").style.display = "none"
+
+    document.getElementById("final").style.display = "block"
+
+    // HS and Initial
+
+    highscore = document.getElementById("highScore").innerHTML 
+    
+
+    initials = document.getElementById("initials").value
+
+    if (initials <= 0){
+        window.alert("Enter your initials")
+        return;
+    }
+    let logScores = JSON.parse(localStorage.getItem("yourScores")) || [];
+   
+// push to array and save
+    let numbers = {Initials: initials, Score: highscore} 
+     logScores.push(numbers)
+    console.log(logScores)
+    setScore(logScores)
+    localStorage.setItem("yourScores", JSON.stringify(logScores))
+  
+};
+// display scores
+    function setScore(logScores) {
+
+    for (var i = 0; i < logScores.length; i++) {
+        var logScore = document.getElementById("finalLog")
+        var ulScores = document.createElement("li")
+        
+        ulScores.setAttribute('class', 'yourScores')
+        ulScores.textContent = logScores[i].Score
+
+        finalLog.appendChild(ulScores)
+
+        var ulInitials = document.createElement('li')
+        
+        ulInitials.setAttribute('class', 'yourInitials')
+        ulInitials.textContent = logScores[i].Initials;
+
+        finalLog.appendChild(ulInitials)
+
+        
+    };
+        
+    };
+ // bring up HS
+
+function highscores() {
+
+    document.getElementById("intro").style.display = "none"
+
+    document.getElementById("finale").style.display = "block"
+
+    var getScore = JSON.parse(localStorage.getItem("yourScores"));
+
+    setScore(getScore)
+    console.log(getScore)   
+};
+  
+
+// reload
+
+var reload = function() {
+    location.href = "";
+};
+
+var tryAgain = function() {
+location.href = "";
+} 
+// event listener
+start.addEventListener("click", startGame)
+
+save.addEventListener("click", saveGame)
+
+highscorePage.addEventListener("click", highscores)
+
+playAgain.addEventListener("click", reload)
+
+again.addEventListener("click", reload)
