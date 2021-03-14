@@ -3,7 +3,7 @@ This is a quiz with 5 questions timed at 75 seconds. You lose 10 seconds for eve
 
 
 ## Website Appearance
-()
+![Image of website](https://github.com/Vivvec/Javascript-Quiz-V2/blob/main/assets/screenshotJS.JPG)
 
 ## Built With
 * CSS
@@ -11,4 +11,4 @@ This is a quiz with 5 questions timed at 75 seconds. You lose 10 seconds for eve
 * JavaScript
 
 ## Live URL
-[Click here to take the Quiz!]()
+[Click here to take the Quiz!](https://vivvec.github.io/Javascript-Quiz-V2/)
